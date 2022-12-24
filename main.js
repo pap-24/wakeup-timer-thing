@@ -13,7 +13,7 @@ if (typeof(alarmHour) == 'number' && typeof(alarmMin) == 'number') {
    clockCheckInterval = setInterval(() => {
       if (alarmHour == new Date().getHours() && alarmMin == new Date().getMinutes()) {
           alert('Playing...');
-          let coolSound = new Audio('C:\Do-Not-Look\haugh.mp3');
+          let coolSound = new Audio('url of mp3 audio here');
           coolSound.play();
           clearInterval(clockCheckInterval);
       }
