@@ -1,24 +1,29 @@
-let alarmHour = prompt('Enter hour: '),
-    alarmMin = prompt('Enter min: '),
-    alarmAM = prompt('am / pm : '),
-    clockCheckInterval;
+let alarmHour = prompt('Ώρα: '),
+    alarmMin = prompt('Λεπτά: '),
+    alarmAM = prompt('π.μ. ή μ.μ. : '),
+    clockCheckInterval; // για την επανάληψη
 
-// unstringify.
-alarmHour = JSON.parse(alarmHour);
-alarmMin = JSON.parse(alarmMin);
-
-if (typeof(alarmHour) == 'number' && typeof(alarmMin) == 'number') {
-  if (alarmAM == "pm") alarmHour += 12;
-  
-   clockCheckInterval = setInterval(() => {
-      if (alarmHour == new Date().getHours() && alarmMin == new Date().getMinutes()) {
-          alert('Playing...');
-          let coolSound = new Audio('url of mp3 audio here');
-          coolSound.play();
-          clearInterval(clockCheckInterval);
-      }
-  }, 1e3); // 1 sec repeat.
-  
+try {
+    alarmHour = JSON.parse(alarmHour);
+    alarmMin = JSON.parse(alarmMin);
+}
+catch (error) {
+    alert('Κάτι δεν πήγε σωστά..');
 }
 
-else alert('Please enter a number!');
+let sound = new Audio('mp3 url here');
+if (typeof (alarmHour) == 'number' && typeof (alarmMin) == 'number') {
+    if (["pm", "π.μ.", "π.μ", "πμ", "πμ."].includes(alarmAM)) alarmHour += 12; // Βάλε 12ωρο άν είναι πμ
+
+    clockCheckInterval = setInterval(() => {
+        // Συνεχόμενα διάβαζε την ώρα μέχρι να γίνει η ζητούμενη του χρήστη.
+        if (alarmHour == new Date().getHours() && alarmMin == new Date().getMinutes()) {
+            sound.loop = true,
+                sound.play();
+            clearInterval(clockCheckInterval); // Σπάσε την επανάληψη
+        }
+    }, 1e3); // 1 sec repeat.
+
+}
+
+else alert('Ρε αριθμό σου ζήτησα');
