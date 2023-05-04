@@ -18,8 +18,8 @@ if (typeof (alarmHour) == 'number' && typeof (alarmMin) == 'number') {
     clockCheckInterval = setInterval(() => {
         // Συνεχόμενα διάβαζε την ώρα μέχρι να γίνει η ζητούμενη του χρήστη.
         if (alarmHour == new Date().getHours() && alarmMin == new Date().getMinutes()) {
-            sound.loop = true,
-                sound.play();
+            sound.loop = true;
+            sound.play();
             clearInterval(clockCheckInterval); // Σπάσε την επανάληψη
         }
     }, 1e3); // 1 sec repeat.
