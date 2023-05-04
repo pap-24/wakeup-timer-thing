@@ -13,7 +13,7 @@ catch (error) {
 
 let sound = new Audio('mp3 url here');
 if (typeof (alarmHour) == 'number' && typeof (alarmMin) == 'number') {
-    if (["pm", "π.μ.", "π.μ", "πμ", "πμ."].includes(alarmAM)) alarmHour += 12; // Βάλε 12ωρο άν είναι πμ
+    if (["pm", "μ.μ.", "μ.μ", "μμ", "μμ."].includes(alarmAM)) alarmHour += 12; // Βάλε 12ωρο άν είναι μμ
 
     clockCheckInterval = setInterval(() => {
         // Συνεχόμενα διάβαζε την ώρα μέχρι να γίνει η ζητούμενη του χρήστη.
